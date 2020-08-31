@@ -91,7 +91,10 @@ io.on("connection", (socket) => {
   });
 
   // Emit wellcome message to new client
-  socket.emit("message", formatMessage(botName, "Wellcome to myChat"));
+  socket.emit(
+    "message",
+    formatMessage(botName, "Wellcome to System Family Chat")
+  );
 
   // Broadcast when a user connects
   // emits everybody (all sockets) but not the current user who emits
