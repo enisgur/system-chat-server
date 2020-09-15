@@ -1,10 +1,12 @@
-const users = [];
+let users = [];
 
 // Join user to chat
-const userJoin = (id, username, room) => {
+const userJoin = async (id, username, room) => {
   const user = { id, username, room };
 
   users.push(user);
+
+  return user;
 };
 
 // Get Current User
@@ -21,6 +23,29 @@ const userLeave = (id) => {
   }
 };
 
+const userChangeRoom = async (id, usrname, room) => {
+  const index = users.findIndex((user) => user.id === id);
+  // const orjUser = await users.find((user) => user.id === id);
+
+  let newUser = {
+    id: id,
+    username: usrname,
+    room,
+  };
+
+  // if (index !== -1) {
+  // newUser = {
+  //   id: orjUser.id,
+  //   username: orjUser.username,
+  //   room,
+  // };
+
+  await users.splice(index, 1)[0];
+  users.push(newUser);
+  console.log("(((((((99999999999 : ", newUser);
+  return newUser;
+  // }
+};
 // Get room users
 // const getRoomUsers = (room) {
 // return users.filter (u)
@@ -36,4 +61,5 @@ module.exports = {
   getCurrentUsser,
   userLeave,
   getUsers,
+  userChangeRoom,
 };
